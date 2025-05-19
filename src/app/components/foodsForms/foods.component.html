@@ -1,0 +1,39 @@
+<p>ReactForm</p>
+<div class="my-4">
+  <form [formGroup]="foodForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="name" class="form-control">Nombre: </label>
+      <input class="form-control" id="name" type="text" formControlName="name">
+      
+      <label for="desc" class="form-control">descripcion: </label>
+      <input class="form-control" id="desc" type="desc" formControlName="description">
+      <label class="form-control" for="precio">precio:</label>
+      <input class="form-control" id="precio" type="text" formControlName="price">
+    </div>
+    <button class="btn btn-secondary" type="submit" [disabled]="!foodForm.valid">Add</button>
+  </form>
+</div>
+
+<p>Form Status: {{ foodForm.status }}</p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (food of foods; track food.id) {
+    <tr>
+      <th scope="row">{{food.id}}</th>
+      <td>{{food.name}}</td>
+      <td>{{food.description}}</td>
+      <td>{{food.price}}</td>
+    </tr>
+  }
+  </tbody>
+</table>
+
