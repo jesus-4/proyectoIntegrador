@@ -1,16 +1,14 @@
-<p>ReactForm</p>
 <div class="my-4">
   <form [formGroup]="foodForm" (ngSubmit)="onSubmit()">
     <div class="mb-3">
       <label for="name" class="form-control">Nombre: </label>
       <input class="form-control" id="name" type="text" formControlName="name">
-      
       <label for="desc" class="form-control">descripcion: </label>
       <input class="form-control" id="desc" type="desc" formControlName="description">
-      <label class="form-control" for="precio">precio:</label>
+      <label class="form-control" for="precio">precio(us):</label>
       <input class="form-control" id="precio" type="text" formControlName="price">
     </div>
-    <button class="btn btn-secondary" type="submit" [disabled]="!foodForm.valid">Add</button>
+    <button class="btn btn-secondary" type="submit" [disabled]="!foodForm.valid">Añadir</button>
   </form>
 </div>
 
@@ -20,9 +18,10 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Description</th>
-      <th scope="col">Price</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">descripcion</th>
+      <th scope="col">Precio</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -31,9 +30,12 @@
       <th scope="row">{{food.id}}</th>
       <td>{{food.name}}</td>
       <td>{{food.description}}</td>
-      <td>{{food.price}}</td>
+      <td>{{food.price}} $</td>
+      <td>
+        <button class="btn btn-danger" (click)="deleteFood(food.id)">Delete</button>
+        <button class="btn btn-warning" (click)="editFood(food)">Edit</button>
+      </td>
     </tr>
   }
   </tbody>
 </table>
-

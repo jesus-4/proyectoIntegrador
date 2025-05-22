@@ -19,7 +19,7 @@ export class FoodsComponent {
 
   constructor(){
     this.foodForm = this.formBuilder.group({
-      id: [0],
+      id: 0,
       name: ['', Validators.required],
       price: ['', Validators.required],
       description: ['']
@@ -58,4 +58,9 @@ export class FoodsComponent {
   generateId(): number {
     return this.foods.length > 0 ? Math.max(...this.foods.map(food => food.id)) + 1 : 1;
   }
+  // resetForm() {
+  //   this.foodForm.reset(
+  //     { name: '', price: '', description: '' }
+  //   );
+  // }
 }
