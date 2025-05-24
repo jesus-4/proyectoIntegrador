@@ -1,66 +1,42 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { FormControl,FormGroup, FormBuilder,ReactiveFormsModule } from '@angular/forms';
-import { Validators } from '@angular/forms';
+import { Component, inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FoodService } from '../../services/food.service';
-import { Food } from '../../model/food';
+import { Food } from '../../model/Food';
 
 @Component({
   selector: 'app-foods',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule],
   templateUrl: './foods.component.html',
   styleUrl: './foods.component.scss'
 })
-export class FoodsComponent {
-  private FoodService = inject(FoodService);
-  private formBuilder= inject(FormBuilder);
-  foodForm : FormGroup;
+export class FoodsComponent implements OnInit {
   foods : Food[] = [];
 
-  constructor(){
-    this.foodForm = this.formBuilder.group({
-      id: 0,
-      name: ['', Validators.required],
-      price: ['', Validators.required],
-      description: ['']
-    });
+  constructor(private foodService: FoodService,
+              private router: Router
+  ) {
+  }
+
+  ngOnInit():void {
     this.loadFoods();
   }
 
-
-  loadFoods() {
-     this.foods = this.FoodService.getFoods();
+  onEdit(food: Food) {
+    this.router.navigate(['foods/edit/' + food.id]);
   }
 
-  onSubmit() {
-    if (this.foodForm.valid) {
-      const food: Food = this.foodForm.value;
-      if (food.id === 0) {
-        const newFood  = {...food, id: this.generateId()};
-        this.FoodService.addFood(newFood);
-      } else {
-        this.FoodService.updateFood(food);
+  deleteFood(food: Food) {
+    this.foodService.deleteFood(food.id!).subscribe({
+      next: () => {
+        this.foods = this.foods.filter(f => f.id !== food.id);
       }
-      this.loadFoods();
-    }
+    });
   }
-
-  editFood(food: Food) {
-    this.foodForm.patchValue({
-      ...food});
+  loadFoods() {
+    this.foodService.getAllFoods().subscribe(food => this.foods = food);
   }
-
-  deleteFood(id: number) {
-    this.FoodService.deleteFood(id);
-    this.loadFoods();
+  onAdd() {
+    this.router.navigate(['foods/add']);
   }
-
-  generateId(): number {
-    return this.foods.length > 0 ? Math.max(...this.foods.map(food => food.id)) + 1 : 1;
-  }
-  // resetForm() {
-  //   this.foodForm.reset(
-  //     { name: '', price: '', description: '' }
-  //   );
-  // }
 }

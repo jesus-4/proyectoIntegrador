@@ -1,0 +1,64 @@
+<div class="container mt-5 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+  <form [formGroup]="foodForm" (ngSubmit)="onSubmit()">
+    <!-- Nombre -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Nombre:</label>
+      <input id="name" class="form-control" formControlName="name" />
+      <div *ngIf="foodForm.get('name')?.invalid && (foodForm.get('name')?.touched || foodForm.get('name')?.dirty)">
+        <small class="text-danger">El nombre es requerido</small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="desc" class="form-label">Descripción:</label>
+      <input id="desc" class="form-control" formControlName="description" />
+    </div>
+
+    <div class="mb-3">
+      <label for="precio" class="form-label">Precio (US$):</label>
+      <input id="precio" type="number"class="form-control" formControlName="price" />
+      <div *ngIf="foodForm.get('price')?.errors?.['required'] && (foodForm.get('price')?.touched || foodForm.get('price')?.dirty)">
+        <small class="text-danger">El precio es requerido</small>
+      </div>
+      <div *ngIf="foodForm.get('price')?.errors?.['min'] && (foodForm.get('price')?.touched || foodForm.get('price')?.dirty)">
+        <small class="text-danger">El precio debe ser mayor a 0</small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="imageUrl" class="form-label">URL de imagen:</label>
+      <input id="imageUrl" class="form-control" formControlName="imageUrl" />
+      <div *ngIf="foodForm.get('imageUrl')?.errors?.['pattern'] && (foodForm.get('imageUrl')?.touched || foodForm.get('imageUrl')?.dirty)">
+        <small class="text-danger">Debe ser una URL válida (http/https)</small>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <div class="col">
+        <label for="protein" class="form-label">Proteína (g):</label>
+        <input id="protein" type="number" class="form-control" formControlName="protein" />
+        <div *ngIf="foodForm.get('protein')?.errors?.['min'] && (foodForm.get('protein')?.touched || foodForm.get('protein')?.dirty)">
+          <small class="text-danger">La proteína debe ser mayor o igual a 0</small></div>
+      </div>
+      <div class="col">
+        <label for="carbohydrate" class="form-label">Carbohidrato (g):</label>
+        <input id="carbohydrate" type="number" class="form-control" formControlName="carbohydrate" />
+        <div *ngIf="foodForm.get('carbohydrate')?.errors?.['min'] && (foodForm.get('carbohydrate')?.touched || foodForm.get('carbohydrate')?.dirty)">
+          <small class="text-danger">El carbohidrato debe ser mayor o igual a 0</small></div>
+      </div>
+      <div class="col">
+        <label for="fat" class="form-label">Grasa (g):</label>
+        <input id="fat" type="number" class="form-control" formControlName="fat" />
+        <div *ngIf="foodForm.get('fat')?.errors?.['min'] && (foodForm.get('fat')?.touched || foodForm.get('fat')?.dirty)">
+          <small class="text-danger">La grasa debe ser mayor o igual a 0</small></div>
+      </div>
+    </div>
+
+    <button class="btn btn-secondary me-2" type="submit" [disabled]="!foodForm.valid">
+      {{ edit ? 'Guardar cambios' : 'Añadir' }}
+    </button>
+    <button class="btn btn-danger" type="button" (click)="onCancel()">Cancelar</button>
+  </form>
+</div>
+
+<p>Form Status: {{ foodForm.status }}</p>
