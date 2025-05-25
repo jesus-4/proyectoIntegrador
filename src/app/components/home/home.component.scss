@@ -1,0 +1,21 @@
+.food-card {
+  background-color: white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.food-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.nutrients span {
+  font-size: 14px;
+}
+
+.price {
+  font-size: 16px;
+}

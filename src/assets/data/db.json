@@ -3,9 +3,9 @@
     {
       "id": "9648",
       "name": "asado",
-      "price": 5,
+      "price": 11,
       "description": "Rico asado",
-      "imageUrl": "",
+      "imageUrl": "https://www.clarin.com/img/2022/03/07/0w2kcAVNO_1200x630__1.jpg",
       "protein": 20,
       "carbohydrate": 12,
       "fat": 10
@@ -15,7 +15,7 @@
       "name": "hamburguesa",
       "price": 3,
       "description": "Deliciosa hamburguesa",
-      "imageUrl": "",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqIvY_EddgWVLKNZD3S-xTjijRkfogKFxFkA&s",
       "protein": 15,
       "carbohydrate": 20,
       "fat": 8
@@ -25,7 +25,7 @@
       "name": "pizza",
       "price": 4,
       "description": "Sabrosa pizza",
-      "imageUrl": "",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpXAisQLDvYumuCqXCAO5zUekQmVRx8pvfcQ&s",
       "protein": 12,
       "carbohydrate": 25,
       "fat": 15

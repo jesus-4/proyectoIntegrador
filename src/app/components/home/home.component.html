@@ -1,0 +1,21 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-4" *ngFor="let food of foods">
+      <div class="food-card d-flex flex-column justify-content-between h-100 p-3 shadow-sm rounded">
+        <div>
+          <img class="food-image img-fluid rounded" [src]="food.imageUrl" alt="{{ food.name }}" />
+          <h5 class="food-name mt-2 text-center">{{ food.name }}</h5>
+          <div class="nutrients d-flex justify-content-around my-2 text-center">
+            <span>🍗 {{ food.protein }}g</span>
+            <span>🍞 {{ food.carbohydrate }}g</span>
+            <span>🥑 {{ food.fat }}g</span>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-auto pt-3">
+          <span class="price fw-bold">${{ food.price }}</span>
+          <button class="btn btn-success btn-sm" (click)="onAdd(food)">Añadir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
