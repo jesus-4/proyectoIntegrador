@@ -64,8 +64,8 @@ initFormFood() {
 
 
   editFood(id: string) {
-    this.foodService.getFoodById(id).subscribe(food =>{
-      this.foodForm.patchValue(food);
+    this.foodService.getFoodById(id)
+    .subscribe(food =>{this.foodForm.patchValue(food);
     });
     this.edit = true;
   }
